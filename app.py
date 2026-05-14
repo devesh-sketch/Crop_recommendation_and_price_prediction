@@ -4,6 +4,7 @@ from pydantic import BaseModel
 import joblib
 import pandas as pd
 import uvicorn
+import os # Added for port flexibility
 
 app = FastAPI(title="Crop Recommendation API")
 
@@ -14,6 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Using relative paths is correct for Render
 try:
     model = joblib.load('crop_model.pkl')
     label_encoder = joblib.load('label_encoder.pkl')
@@ -55,4 +57,6 @@ async def predict(data: ClimateData):
         return {"status": "error", "message": str(e)}
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=5000)
+    # Get port from environment or default to 5000
+    port = int(os.environ.get("PORT", 5000)) 
+    uvicorn.run(app, host="0.0.0.0", port=port)
