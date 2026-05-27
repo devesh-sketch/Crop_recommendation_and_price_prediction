@@ -16,15 +16,15 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body class="text-slate-900 bg-white">
+<body class="text-slate-900 bg-white antialiased">
 
-    <nav class="fixed w-full z-50 glass-nav px-6 py-4">
+    <nav class="fixed w-full z-50 glass-nav px-4 sm:px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <div class="bg-emerald-600 p-2 rounded-lg text-white"><i class="fas fa-leaf"></i></div>
                 <span class="text-xl font-extrabold tracking-tight">Agro<span class="text-emerald-600">Vision</span></span>
             </div>
-            <div class="flex gap-8 font-semibold text-sm">
+            <div class="flex gap-4 sm:gap-8 font-semibold text-xs sm:text-sm">
                 <a href="#home" class="hover:text-emerald-600 transition">Home</a>
                 <a href="#predictor" class="hover:text-emerald-600 transition">Predictor</a>
                 <a href="#farmer-hub" class="hover:text-emerald-600 transition">Info Hub</a>
@@ -32,98 +32,102 @@
         </div>
     </nav>
 
-    <section id="home" class="min-h-screen flex items-center bg-slate-50 pt-20">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-                <h1 class="text-6xl font-extrabold leading-tight mb-6">AI BASED <br><span class="text-emerald-600">CROP RECOMMENDATION.</span></h1>
-                <p class="text-lg text-slate-600 mb-8 max-w-lg">Designed for Indian farmers to predict crops and market rates using AI.</p>
-                <a href="#predictor" class="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold shadow-xl">Get Started</a>
+    <section id="home" class="min-h-screen flex items-center bg-slate-50 pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div class="text-center lg:text-left order-2 lg:order-1">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 sm:mb-6">
+                    AI BASED <br class="hidden sm:block"><span class="text-emerald-600">CROP RECOMMENDATION.</span>
+                </h1>
+                <p class="text-base sm:text-lg text-slate-600 mb-6 sm:mb-8 max-w-lg mx-auto lg:mx-0">Designed for Indian farmers to predict crops and market rates using AI.</p>
+                <a href="#predictor" class="inline-block bg-slate-900 text-white px-8 sm:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold shadow-xl hover:bg-slate-800 transition">Get Started</a>
             </div>
-            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=800" class="rounded-[3rem] shadow-2xl">
+            <div class="order-1 lg:order-2 px-4 sm:px-0">
+                <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=800" class="rounded-[2rem] sm:rounded-[3rem] shadow-2xl mx-auto max-w-full h-auto">
+            </div>
         </div>
     </section>
 
-    <section id="predictor" class="py-32 min-h-screen">
-        <div class="max-w-4xl mx-auto px-6">
+    <section id="predictor" class="py-20 sm:py-32 min-h-screen flex items-center">
+        <div class="max-w-4xl mx-auto w-full px-4 sm:px-6">
             
             <div id="step-1" class="layer active text-center">
-                <h2 class="text-4xl font-extrabold mb-10 text-slate-800">Select Season</h2>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <button onclick="nextLayer('Summer', 25, 45, 30, 60, 0, 100)" class="p-8 bg-slate-50 rounded-3xl hover:border-emerald-500 border-2 border-transparent transition shadow-sm">
-                        <i class="fas fa-sun text-4xl text-orange-400 mb-4"></i>
-                        <p class="font-bold">Zaid (Summer)</p>
+                <h2 class="text-3xl sm:text-4xl font-extrabold mb-8 sm:mb-10 text-slate-800">Select Season</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                    <button onclick="nextLayer('Summer', 25, 45, 30, 60, 0, 100)" class="p-6 sm:p-8 bg-slate-50 rounded-2xl sm:rounded-3xl hover:border-emerald-500 border-2 border-transparent transition shadow-sm flex flex-row sm:flex-col items-center gap-4 sm:gap-0 justify-start sm:justify-center">
+                        <i class="fas fa-sun text-3xl sm:text-4xl text-orange-400 sm:mb-4 shrink-0"></i>
+                        <p class="font-bold text-base sm:text-lg">Zaid (Summer)</p>
                     </button>
-                    <button onclick="nextLayer('Winter', 10, 25, 20, 50, 10, 80)" class="p-8 bg-slate-50 rounded-3xl hover:border-emerald-500 border-2 border-transparent transition shadow-sm">
-                        <i class="fas fa-snowflake text-4xl text-blue-400 mb-4"></i>
-                        <p class="font-bold">Rabi (Winter)</p>
+                    <button onclick="nextLayer('Winter', 10, 25, 20, 50, 10, 80)" class="p-6 sm:p-8 bg-slate-50 rounded-2xl sm:rounded-3xl hover:border-emerald-500 border-2 border-transparent transition shadow-sm flex flex-row sm:flex-col items-center gap-4 sm:gap-0 justify-start sm:justify-center">
+                        <i class="fas fa-snowflake text-3xl sm:text-4xl text-blue-400 sm:mb-4 shrink-0"></i>
+                        <p class="font-bold text-base sm:text-lg">Rabi (Winter)</p>
                     </button>
-                    <button onclick="nextLayer('Monsoon', 20, 35, 70, 100, 150, 600)" class="p-8 bg-slate-50 rounded-3xl hover:border-emerald-500 border-2 border-transparent transition shadow-sm">
-                        <i class="fas fa-cloud-showers-heavy text-4xl text-emerald-400 mb-4"></i>
-                        <p class="font-bold">Kharif (Monsoon)</p>
+                    <button onclick="nextLayer('Monsoon', 20, 35, 70, 100, 150, 600)" class="p-6 sm:p-8 bg-slate-50 rounded-2xl sm:rounded-3xl hover:border-emerald-500 border-2 border-transparent transition shadow-sm flex flex-row sm:flex-col items-center gap-4 sm:gap-0 justify-start sm:justify-center">
+                        <i class="fas fa-cloud-showers-heavy text-3xl sm:text-4xl text-emerald-400 sm:mb-4 shrink-0"></i>
+                        <p class="font-bold text-base sm:text-lg">Kharif (Monsoon)</p>
                     </button>
                 </div>
             </div>
 
             <div id="step-2" class="layer">
-                <div class="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100">
-                    <div class="flex justify-between items-center mb-8">
-                        <h3 class="text-2xl font-bold">Climate for <span id="layer-season" class="text-emerald-600"></span></h3>
-                        <button onclick="goBack()" class="text-emerald-600 text-sm font-bold"><i class="fas fa-redo mr-1"></i> Change Season</button>
+                <div class="bg-white p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] shadow-2xl border border-slate-100">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 sm:mb-8">
+                        <h3 class="text-xl sm:text-2xl font-bold">Climate for <span id="layer-season" class="text-emerald-600"></span></h3>
+                        <button onclick="goBack()" class="text-emerald-600 text-sm font-bold text-left"><i class="fas fa-redo mr-1"></i> Change Season</button>
                     </div>
-                    <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
                         <div>
                             <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Temp (<span id="t-lim"></span>°C)</label>
-                            <input type="number" id="temp" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 focus:ring-2 focus:ring-emerald-500 outline-none">
+                            <input type="number" id="temp" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 sm:py-4 focus:ring-2 focus:ring-emerald-500 outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Humidity (<span id="h-lim"></span>%)</label>
-                            <input type="number" id="humidity" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 focus:ring-2 focus:ring-emerald-500 outline-none">
+                            <input type="number" id="humidity" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 sm:py-4 focus:ring-2 focus:ring-emerald-500 outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-slate-400 uppercase mb-2">Rainfall (<span id="r-lim"></span>mm)</label>
-                            <input type="number" id="rainfall" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 focus:ring-2 focus:ring-emerald-500 outline-none">
+                            <input type="number" id="rainfall" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 sm:py-4 focus:ring-2 focus:ring-emerald-500 outline-none">
                         </div>
                     </div>
-                    <button id="submit-btn" onclick="getFinalPrediction()" class="w-full bg-emerald-600 text-white font-bold py-5 rounded-2xl transition duration-200 hover:bg-emerald-700">Analyze Data</button>
+                    <button id="submit-btn" onclick="getFinalPrediction()" class="w-full bg-emerald-600 text-white font-bold py-4 sm:py-5 rounded-xl sm:rounded-2xl transition duration-200 hover:bg-emerald-700 shadow-md">Analyze Data</button>
                 </div>
             </div>
 
             <div id="step-3" class="layer text-center">
-                <div id="result-card" class="p-16 rounded-[4rem] text-white shadow-2xl">
-                    <h2 id="final-crop" class="text-7xl font-black capitalize mb-8"></h2>
-                    <div class="bg-black/20 p-8 rounded-3xl border border-white/10 max-w-sm mx-auto">
+                <div id="result-card" class="p-8 sm:p-16 rounded-[2.5rem] sm:rounded-[4rem] text-white shadow-2xl">
+                    <h2 id="final-crop" class="text-4xl sm:text-7xl font-black capitalize mb-6 sm:mb-8"></h2>
+                    <div class="bg-black/20 p-6 sm:p-8 rounded-2xl sm:rounded-3xl border border-white/10 max-w-sm mx-auto">
                         <p class="text-xs font-bold uppercase opacity-60 mb-2">Market Price (during harvesting)</p>
-                        <p class="text-5xl font-bold text-yellow-300">
-                            ₹ <span id="final-price">0</span><span class="text-xl ml-1 opacity-90 font-semibold">/qtl</span>
+                        <p class="text-3xl sm:text-5xl font-bold text-yellow-300">
+                            ₹ <span id="final-price">0</span><span class="text-lg sm:text-xl ml-1 opacity-90 font-semibold">/qtl</span>
                         </p>
                     </div>
-                    <button onclick="resetAll()" class="mt-12 text-white font-bold underline">New Prediction</button>
+                    <button onclick="resetAll()" class="mt-8 sm:mt-12 text-white font-bold underline hover:opacity-80 transition">New Prediction</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="farmer-hub" class="py-32 bg-slate-50">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-extrabold mb-12">Farmer Knowledge Hub</h2>
-            <div class="grid lg:grid-cols-3 gap-8 text-left">
-                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm">
-                    <h4 class="font-bold text-xl mb-3">Irrigation Control</h4>
+    <section id="farmer-hub" class="py-20 sm:py-32 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold mb-10 sm:mb-12">Farmer Knowledge Hub</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 text-left">
+                <div class="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-sm">
+                    <h4 class="font-bold text-lg sm:text-xl mb-3">Irrigation Control</h4>
                     <p class="text-slate-500 text-sm">Rice needs high water (>200mm). If rainfall is low, consider pulses.</p>
                 </div>
-                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm">
-                    <h4 class="font-bold text-xl mb-3">Temperature Tips</h4>
+                <div class="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-sm">
+                    <h4 class="font-bold text-lg sm:text-xl mb-3">Temperature Tips</h4>
                     <p class="text-slate-500 text-sm">Protect crops from heat stress when temp crosses 45°C</p>
                 </div>
-                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm">
-                    <h4 class="font-bold text-xl mb-3">Market Strategy</h4>
+                <div class="bg-white p-6 sm:p-8 rounded-[2rem] sm:rounded-[2.5rem] shadow-sm">
+                    <h4 class="font-bold text-lg sm:text-xl mb-3">Market Strategy</h4>
                     <p class="text-slate-500 text-sm">Always check the MSP in our tool before harvesting for maximum profit.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 bg-slate-900 text-center text-slate-500 text-[10px] italic uppercase tracking-widest">
+    <footer class="py-12 bg-slate-900 text-center text-slate-500 text-[10px] italic uppercase tracking-widest px-4">
         AI BASED CROP RECOMMENDATION AND PRICE PREDICTION
     </footer>
 
@@ -157,7 +161,6 @@
             };
 
             try {
-                // Updated line to point directly to your production backend URL on Render
                 const res = await fetch('https://crop-recommendation-and-price-prediction-76av.onrender.com/api/recommend', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -174,9 +177,9 @@
                     
                     const card = document.getElementById('result-card');
                     if (result.crop.toLowerCase() === 'rice') {
-                        card.className = "p-16 rounded-[4rem] text-white shadow-2xl bg-gradient-to-br from-emerald-800 to-teal-950";
+                        card.className = "p-8 sm:p-16 rounded-[2.5rem] sm:rounded-[4rem] text-white shadow-2xl bg-gradient-to-br from-emerald-800 to-teal-950";
                     } else {
-                        card.className = "p-16 rounded-[4rem] text-white shadow-2xl bg-gradient-to-br from-orange-600 to-amber-900";
+                        card.className = "p-8 sm:p-16 rounded-[2.5rem] sm:rounded-[4rem] text-white shadow-2xl bg-gradient-to-br from-orange-600 to-amber-900";
                     }
                     
                     document.getElementById('step-2').classList.remove('active');
