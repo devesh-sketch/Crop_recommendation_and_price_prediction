@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crop Recommendation and Price Prediction</title>
+    <title>AgroVision | Smart Farming AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -22,7 +22,7 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <div class="bg-emerald-600 p-2 rounded-lg text-white"><i class="fas fa-leaf"></i></div>
-                <span class="text-xl font-extrabold tracking-tight">AgroVision <span class="text-emerald-600">AI</span></span>
+                <span class="text-xl font-extrabold tracking-tight">Agro<span class="text-emerald-600">Vision</span></span>
             </div>
             <div class="flex gap-8 font-semibold text-sm">
                 <a href="#home" class="hover:text-emerald-600 transition">Home</a>
@@ -35,11 +35,11 @@
     <section id="home" class="min-h-screen flex items-center bg-slate-50 pt-20">
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <div>
-                <h1 class="text-6xl font-extrabold leading-tight mb-6">AI BASED <br><span class="text-emerald-600">CROP & PRICE PREDICTION.</span></h1>
-                <p class="text-lg text-slate-600 mb-8 max-w-lg">Empowering Indian farmers with data-driven insights for better yields and market value.</p>
+                <h1 class="text-6xl font-extrabold leading-tight mb-6">AI BASED <br><span class="text-emerald-600">CROP RECOMMENDATION.</span></h1>
+                <p class="text-lg text-slate-600 mb-8 max-w-lg">Designed for Indian farmers to predict crops and market rates using AI.</p>
                 <a href="#predictor" class="bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold shadow-xl">Get Started</a>
             </div>
-            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=800" class="rounded-[3rem] shadow-2xl" alt="Farming">
+            <img src="https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=800" class="rounded-[3rem] shadow-2xl">
         </div>
     </section>
 
@@ -84,7 +84,7 @@
                             <input type="number" id="rainfall" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-4 focus:ring-2 focus:ring-emerald-500 outline-none">
                         </div>
                     </div>
-                    <button id="predict-btn" onclick="getFinalPrediction()" class="w-full bg-emerald-600 text-white font-bold py-5 rounded-2xl transition hover:bg-emerald-700">Analyze Data</button>
+                    <button id="submit-btn" onclick="getFinalPrediction()" class="w-full bg-emerald-600 text-white font-bold py-5 rounded-2xl transition duration-200 hover:bg-emerald-700">Analyze Data</button>
                 </div>
             </div>
 
@@ -103,13 +103,31 @@
         </div>
     </section>
 
+    <section id="farmer-hub" class="py-32 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-extrabold mb-12">Farmer Knowledge Hub</h2>
+            <div class="grid lg:grid-cols-3 gap-8 text-left">
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm">
+                    <h4 class="font-bold text-xl mb-3">Irrigation Control</h4>
+                    <p class="text-slate-500 text-sm">Rice needs high water (>200mm). If rainfall is low, consider pulses.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm">
+                    <h4 class="font-bold text-xl mb-3">Temperature Tips</h4>
+                    <p class="text-slate-500 text-sm">Protect crops from heat stress when temp crosses 45°C</p>
+                </div>
+                <div class="bg-white p-8 rounded-[2.5rem] shadow-sm">
+                    <h4 class="font-bold text-xl mb-3">Market Strategy</h4>
+                    <p class="text-slate-500 text-sm">Always check the MSP in our tool before harvesting for maximum profit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="py-12 bg-slate-900 text-center text-slate-500 text-[10px] italic uppercase tracking-widest">
-        JUET Guna | Minor Project 2026
+        AI BASED CROP RECOMMENDATION AND PRICE PREDICTION
     </footer>
 
     <script>
-        const RENDER_API_URL = 'https://crop-recommendation-and-price-prediction-650y.onrender.com/api/recommend';
-
         function nextLayer(name, tMin, tMax, hMin, hMax, rMin, rMax) {
             document.getElementById('layer-season').innerText = name;
             document.getElementById('t-lim').innerText = tMin + "-" + tMax;
@@ -128,9 +146,8 @@
         }
 
         async function getFinalPrediction() {
-            const btn = document.getElementById('predict-btn');
-            const originalText = btn.innerText;
-            btn.innerText = "Analyzing... Please wait";
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = "Analyzing Cloud Data...";
             btn.disabled = true;
 
             const data = {
@@ -140,7 +157,8 @@
             };
 
             try {
-                const res = await fetch(RENDER_API_URL, {
+                // Updated line to point directly to your production backend URL on Render
+                const res = await fetch('https://crop-recommendation-and-price-prediction-76av.onrender.com/api/recommend', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data)
@@ -150,28 +168,26 @@
                 
                 if (result.status === "success") {
                     document.getElementById('final-crop').innerText = result.crop;
+                    
                     const formattedPrice = Number(result.price_value).toLocaleString('en-IN');
                     document.getElementById('final-price').innerText = formattedPrice;
                     
                     const card = document.getElementById('result-card');
-                    const lowerCrop = result.crop.toLowerCase();
-                    if (lowerCrop === 'rice' || lowerCrop === 'jute') {
-                        card.className = "p-16 rounded-[4rem] text-white shadow-2xl bg-emerald-900";
-                    } else if (lowerCrop === 'maize' || lowerCrop === 'cotton') {
-                        card.className = "p-16 rounded-[4rem] text-white shadow-2xl bg-orange-700";
+                    if (result.crop.toLowerCase() === 'rice') {
+                        card.className = "p-16 rounded-[4rem] text-white shadow-2xl bg-gradient-to-br from-emerald-800 to-teal-950";
                     } else {
-                        card.className = "p-16 rounded-[4rem] text-white shadow-2xl bg-slate-800";
+                        card.className = "p-16 rounded-[4rem] text-white shadow-2xl bg-gradient-to-br from-orange-600 to-amber-900";
                     }
                     
                     document.getElementById('step-2').classList.remove('active');
                     document.getElementById('step-3').classList.add('active');
                 } else {
-                    alert("Error: " + (result.message || "Something went wrong"));
+                    alert("Error from server: " + result.message);
                 }
             } catch (e) { 
-                alert("The AI server is waking up. Please try again in 30 seconds."); 
+                alert("Could not connect to the Render API! Remember it can take up to 60 seconds to spin up if it was sleeping."); 
             } finally {
-                btn.innerText = originalText;
+                btn.innerText = "Analyze Data";
                 btn.disabled = false;
             }
         }
